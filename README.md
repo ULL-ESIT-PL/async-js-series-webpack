@@ -135,13 +135,15 @@ series(
 
 ## Webpack
 
-Webpack is a static module bundler for JavaScript applications — it takes all the code from your application and makes it usable in a web browser. Modules are reusable chunks of code built from your app's JavaScript, node_modules, images, and the CSS styles which are packaged to be easily used in your website
+Webpack is a **static module bundler** for JavaScript applications — it takes all the code from your application and makes it usable in a web browser. Modules are reusable chunks of code built from your app's JavaScript, node_modules, images, and the CSS styles which are packaged to be easily used in your website
 
 ![](images/webpack.png)
 
 When Webpack processes your application, it builds a dependency graph which maps out the modules that your project needs and generates one or more bundles. A **bundle** is a distinct grouping of connected code that has been compiled and transformed for the browser.
 
-The solution used in this repo relies on [webpack](https://webpack.js.org/guides/getting-started/). Read the [Getting Started](https://webpack.js.org/guides/getting-started/) tutorial.
+The solution used in this repo relies on [webpack](https://webpack.js.org/guides/getting-started/). 
+
+Read the [Getting Started](https://webpack.js.org/guides/getting-started/) tutorial.
 
 I have added [webpack-dev-server](https://webpack.js.org/configuration/dev-server/) 
 and a script `start:dev` to make it easier the development:
@@ -222,5 +224,46 @@ module.exports = {
 };
 ```
 
-We have installed the [copy-webpack-plugin](https://github.com/webpack-contrib/copy-webpack-plugin) to copy the required files onto the distribution directory `dist`
+We have configured:
 
+* the [copy-webpack-plugin](https://github.com/webpack-contrib/copy-webpack-plugin) to copy the required files onto the distribution directory `dist`
+* the [webpack-dev-server](https://webpack.js.org/configuration/dev-server/)
+
+## The build task
+
+```
+[~/.../p3-t1-handling-events/sol]$ tree dist/
+dist/
+└── index.html
+
+0 directories, 2 files
+[~/.../p3-t1-handling-events/sol]$ npm run build
+
+> sol@1.0.0 build /private/tmp/sol
+> webpack
+
+Hash: c0d97c54460908d8cf42
+Version: webpack 4.41.6
+Time: 487ms
+Built at: 2020-02-25 12:40:17
+      Asset      Size  Chunks             Chunk Names
+favicon.ico  15.1 KiB          [emitted]
+    main.js   323 KiB    main  [emitted]  main
+script-1.js  52 bytes          [emitted]
+script-2.js  61 bytes          [emitted]
+script-3.js  66 bytes          [emitted]
+Entrypoint main = main.js
+[./node_modules/webpack/buildin/global.js] (webpack)/buildin/global.js 472 bytes {main} [built]
+[./src/index.js] 574 bytes {main} [built]
+    + 105 hidden modules
+[[~/.../p3-t1-handling-events/sol]$ tree -s dist
+dist
+├── [      15492]  favicon.ico
+├── [        155]  index.html
+├── [     331143]  main.js
+├── [         52]  script-1.js
+├── [         61]  script-2.js
+└── [         66]  script-3.js
+
+0 directories, 6 files
+```
