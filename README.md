@@ -30,7 +30,7 @@ If there’s any code below `loadScript(…)`, it doesn’t wait until the scrip
     // ...
 ```
 
-And so, if we want to load several scripts, each one using the functions defined in the former ones we have to express our dependencies using callbacks and nesting the callbacks inside the callbacks:
+And so, if we want to load several scripts, each one using the functions defined in the former ones we have to express our dependencies introducing a callback argument and nesting the succesive callbacks inside the callbacks:
 
 ```js
 <!DOCTYPE html>
