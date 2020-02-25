@@ -34,6 +34,20 @@ If there’s any code below `loadScript(…)`, it doesn’t wait until the scrip
     // ...
 ```
 
+Let’s add a callback function as a second argument to loadScript that should execute when the script loads. What if the script loading fails? Our callback should be able to react on that. Here’s an improved version of `loadScript`:
+
+```js
+      function loadScript(src, callback) {
+        let script = document.createElement('script');
+        script.src = src;
+      
+        script.onload = () => callback(null, script);
+        script.onerror = () => callback(new Error(`Script load error for ${src}`));
+      
+        document.head.append(script);
+      }
+```
+
 ## Loading Several Scripts Sequentially
 
 And so, if we want to load several scripts, each one using the functions defined in the former ones we have to express our dependencies introducing a callback argument and nesting the succesive callbacks inside the callbacks:
