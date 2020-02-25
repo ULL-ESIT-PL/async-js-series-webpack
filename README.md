@@ -14,19 +14,81 @@ It appends to the document the new, dynamically created, tag `<script src="…">
 
 We can use this function like this:
 
+```js
     // load and execute the script at the given path
     loadScript('/my/script.js');
+```
 
-The script is executed “asynchronously”, as it starts loading now, but runs later, when the function has already finished.
+The script is executed *asynchronously*, as it starts loading now, but runs later, when the function has already finished.
 
 If there’s any code below `loadScript(…)`, it doesn’t wait until the script loading finishes.
 
+```js
     loadScript('/my/script.js');
     // the code below loadScript
     // doesn't wait for the script loading to finish
     // ...
+```
 
-Let’s say we need to use the new script as soon as it loads. It declares new functions, and w
+And so, if we want to load several scripts, each one using the functions defined in the former ones we have to express our dependencies using callbacks and nesting the callbacks inside the callbacks:
+
+```js
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+  </head>
+  <body>
+    <p id="out"></p>
+    <script>
+      'use strict';
+      let out = document.querySelector('p');
+
+      function loadScript(src, callback) {
+        let script = document.createElement('script');
+        script.src = src;
+      
+        script.onload = () => callback(null, script);
+        script.onerror = () => callback(new Error(`Script load error for ${src}`));
+      
+        document.head.append(script);
+      }
+           
+      loadScript('/script-1.js', (error, script) => {
+        if (error) {
+          console.error( error ); 
+        } else {
+          const message = `Cool!, the script '${script.src}' is loaded: "${hello()}"`;
+          out.innerHTML = message;
+          console.log(message);
+
+          loadScript('/script-2.js', (error, script) => {
+            if (error) {
+              console.error( error ); 
+            } else {
+              const message = `Great!, the script '${script.src}' is loaded: "${world()}"`;
+              out.innerHTML += `<br/>${message}`;
+              console.log(message);
+              loadScript('script-3.js', (error, script) => {
+                if (error) {
+                  console.error( error );
+                } else {
+                  const message = `Unbelievable!, the script '${script.src}' is loaded: "${ull()}"`;
+                  out.innerHTML += `<br/>${message}`;
+                  console.log(message);
+                  // ...continue after all scripts are loaded 
+                }
+              });
+            }
+          })
+        }
+      });
+      </script>      
+  </body>  
+</html>
+```
 
 
 https://webpack.js.org/guides/getting-started/
