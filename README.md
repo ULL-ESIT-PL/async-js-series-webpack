@@ -98,6 +98,8 @@ And so, if we want to load several scripts, each one using the functions defined
 
 ## Async-es: The series method
 
+A pure ESM version of Async is available as <a href="https://www.npmjs.com/package/async-es" rel="nofollow"><code>async-es</code></a>.
+
 We can use the `series` method of [async-es](https://www.npmjs.com/package/async-es)
 to avoid the *callback hell* / *pyramid of doom*:
 
