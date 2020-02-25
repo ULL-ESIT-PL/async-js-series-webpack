@@ -184,6 +184,8 @@ When we visit [http://localhost:9000/](http://localhost:9000/) we see something 
 
 ![images/webpack-serving-loadscript.png](images/webpack-serving-loadscript.png)
 
+### Webpack Configuration File
+
 This is our webpack configuration file:
 
 ```
