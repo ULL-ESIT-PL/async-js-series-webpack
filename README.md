@@ -216,5 +216,6 @@ module.exports = {
   ],
 };
 ```
+
 We have installed the [copy-webpack-plugin](https://github.com/webpack-contrib/copy-webpack-plugin) to copy the required files onto the distribution directory `dist`
 
