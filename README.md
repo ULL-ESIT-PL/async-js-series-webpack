@@ -137,7 +137,7 @@ series(
 
 Webpack is a static module bundler for JavaScript applications — it takes all the code from your application and makes it usable in a web browser. Modules are reusable chunks of code built from your app's JavaScript, node_modules, images, and the CSS styles which are packaged to be easily used in your website
 
-![](webpack.png)
+![](images/webpack.png)
 
 When Webpack processes your application, it builds a dependency graph which maps out the modules that your project needs and generates one or more bundles. A **bundle** is a distinct grouping of connected code that has been compiled and transformed for the browser.
 
