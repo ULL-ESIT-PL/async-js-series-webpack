@@ -90,11 +90,89 @@ And so, if we want to load several scripts, each one using the functions defined
 </html>
 ```
 
+We can use the `series` method of [async-es](https://www.npmjs.com/package/async-es)
+to avoid the *callback hell* / *pyramid of doom*:
 
-https://webpack.js.org/guides/getting-started/
+```
+[~/.../load-script-seq(master)]$ pwd -P
+/Users/casiano/local/src/javascript/learning/async/load-script-seq
+[~/.../load-script-seq(master)]$ ls -l src/index.js
+-rw-r--r--  1 casiano  staff  574 25 feb 11:43 src/index.js
+```
 
-https://www.npmjs.com/package/async-es
+```js
+import { series } from "async-es";
+
+function loadScript(src, callback) {
+    let script = document.createElement('script');
+    script.src = src;
+
+    script.onload = () => callback(null, script);
+    script.onerror = () => callback(new Error(`Script load error for ${src}`));
+
+    document.head.append(script);
+}
+
+let p = document.querySelector('p');
+
+series(
+  [
+     cb => loadScript('/script-1.js', cb),
+     cb => loadScript('/script-2.js', cb),
+     cb => loadScript('/script-3.js', cb)
+   ],
+   (err, results) => p.innerHTML = results.map(s => s.src).join("<br/>")
+);
+```
+
+This solution relies on [webpack](https://webpack.js.org/guides/getting-started/). You have 
+to install it first. Read the [Getting Started](https://webpack.js.org/guides/getting-started/) tutorial.
+
+I have added [webpack-dev-server](https://webpack.js.org/configuration/dev-server/) 
+and a script `start:dev` to make it easier the development:
+
+```
+[~/.../load-script-seq(master)]$ npm run start:dev
+
+> sol@1.0.0 start:dev /Users/casiano/local/src/javascript/learning/async/load-script-seq
+> webpack-dev-server
+
+ℹ ｢wds｣: Project is running at http://localhost:9000/
+ℹ ｢wds｣: webpack output is served from /
+ℹ ｢wds｣: Content not from webpack is served from /Users/casiano/local/src/javascript/learning/async/load-script-seq/dist
+ℹ ｢wdm｣: Hash: bfb427cb5bbcc46dcb2d
+Version: webpack 4.41.6
+Time: 1305ms
+Built at: 2020-02-25 12:02:54
+      Asset      Size  Chunks             Chunk Names
+favicon.ico  15.1 KiB          [emitted]
+    main.js   679 KiB    main  [emitted]  main
+script-1.js  52 bytes          [emitted]
+script-2.js  61 bytes          [emitted]
+script-3.js  66 bytes          [emitted]
+Entrypoint main = main.js
+[0] multi (webpack)-dev-server/client?http://localhost:9000 ./src/index.js 40 bytes {main} [built]
+[./node_modules/ansi-html/index.js] 4.16 KiB {main} [built]
+[./node_modules/async-es/apply.js] 1.34 KiB {main} [built]
+[./node_modules/async-es/applyEach.js] 1.6 KiB {main} [built]
+[./node_modules/async-es/index.js] 9.83 KiB {main} [built]
+[./node_modules/webpack-dev-server/client/index.js?http://localhost:9000] (webpack)-dev-server/client?http://localhost:9000 4.29 KiB {main} [built]
+[./node_modules/webpack-dev-server/client/overlay.js] (webpack)-dev-server/client/overlay.js 3.51 KiB {main} [built]
+[./node_modules/webpack-dev-server/client/socket.js] (webpack)-dev-server/client/socket.js 1.53 KiB {main} [built]
+[./node_modules/webpack-dev-server/client/utils/createSocketUrl.js] (webpack)-dev-server/client/utils/createSocketUrl.js 2.91 KiB {main} [built]
+[./node_modules/webpack-dev-server/client/utils/log.js] (webpack)-dev-server/client/utils/log.js 964 bytes {main} [built]
+[./node_modules/webpack-dev-server/client/utils/reloadApp.js] (webpack)-dev-server/client/utils/reloadApp.js 1.59 KiB {main} [built]
+[./node_modules/webpack-dev-server/client/utils/sendMessage.js] (webpack)-dev-server/client/utils/sendMessage.js 402 bytes {main} [built]
+[./node_modules/webpack-dev-server/node_modules/strip-ansi/index.js] (webpack)-dev-server/node_modules/strip-ansi/index.js 161 bytes {main} [built]
+[./node_modules/webpack/hot sync ^\.\/log$] (webpack)/hot sync nonrecursive ^\.\/log$ 170 bytes {main} [built]
+[./src/index.js] 574 bytes {main} [built]
+    + 123 hidden modules
+ℹ ｢wdm｣: Compiled successfully.
+```
+
+When we visit [http://localhost:9000/](http://localhost:9000/) we see somehting like this:
+
+![images/webpack-serving-loadscript.png](images/webpack-serving-loadscript.png)
+
 
 https://javascript.info/callbacks
-
-https://webpack.js.org/configuration/dev-server/
