@@ -12,6 +12,8 @@ Take a look at the function `loadScript(src)`, that loads a script with the give
     }
 ```
 
+(See [https://javascript.info/callbacks](https://javascript.info/callbacks) for more details)
+
 It appends to the document the new, dynamically created, tag `<script src="…">` with given `src`. The browser automatically starts loading it and executes when complete.
 
 We can use this function like this:
@@ -182,5 +184,35 @@ When we visit [http://localhost:9000/](http://localhost:9000/) we see something 
 
 ![images/webpack-serving-loadscript.png](images/webpack-serving-loadscript.png)
 
+This is our webpack configuration file:
 
-https://javascript.info/callbacks
+```
+~/.../p3-t1-handling-events/sol]$ cat webpack.config.js
+```
+
+```js
+const path = require('path');
+const CopyPlugin = require('copy-webpack-plugin');
+
+module.exports = {
+  entry:  path.resolve('.', 'src', 'index.js'),
+  mode: 'development',
+  output: {
+    filename: 'main.js',
+    path: path.resolve(__dirname, 'dist'),
+  },
+  devServer: {
+    contentBase: path.join(__dirname, 'dist'),
+    compress: true,
+    port: 9000
+  },
+  plugins: [
+    new CopyPlugin([
+      { from: 'script-*.js' },
+      { from: "favicon.ico" }
+    ]),
+  ],
+};
+```
+We have installed the [copy-webpack-plugin](https://github.com/webpack-contrib/copy-webpack-plugin) to copy the required files onto the distribution directory `dist`
+
