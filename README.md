@@ -1,3 +1,5 @@
+## The loadScript function
+
 Take a look at the function `loadScript(src)`, that loads a script with the given `src`:
 
 ```js
@@ -29,6 +31,8 @@ If there’s any code below `loadScript(…)`, it doesn’t wait until the scrip
     // doesn't wait for the script loading to finish
     // ...
 ```
+
+## Loading Several Scripts Sequentially
 
 And so, if we want to load several scripts, each one using the functions defined in the former ones we have to express our dependencies introducing a callback argument and nesting the succesive callbacks inside the callbacks:
 
@@ -90,6 +94,8 @@ And so, if we want to load several scripts, each one using the functions defined
 </html>
 ```
 
+## Async-es: The series method
+
 We can use the `series` method of [async-es](https://www.npmjs.com/package/async-es)
 to avoid the *callback hell* / *pyramid of doom*:
 
@@ -124,6 +130,8 @@ series(
    (err, results) => p.innerHTML = results.map(s => s.src).join("<br/>")
 );
 ```
+
+## Webpack
 
 This solution relies on [webpack](https://webpack.js.org/guides/getting-started/). You have 
 to install it first. Read the [Getting Started](https://webpack.js.org/guides/getting-started/) tutorial.
