@@ -178,7 +178,7 @@ Entrypoint main = main.js
 ℹ ｢wdm｣: Compiled successfully.
 ```
 
-When we visit [http://localhost:9000/](http://localhost:9000/) we see somehting like this:
+When we visit [http://localhost:9000/](http://localhost:9000/) we see something like this:
 
 ![images/webpack-serving-loadscript.png](images/webpack-serving-loadscript.png)
 
