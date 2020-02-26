@@ -116,7 +116,7 @@ That’s sometimes called *callback hell* or *pyramid of doom.*
 </div>
 <object type="image/svg+xml" data="https://javascript.info//article/callbacks/callback-hell.svg" width="467" height="279" class="image__image">
 
-  <img src="/article/callbacks/callback-hell.svg" alt="" width="467" height="279">
+  <img src="ttps://javascript.info/article/callbacks/callback-hell.svg" alt="" width="467" height="279">
 
 </object>
 
