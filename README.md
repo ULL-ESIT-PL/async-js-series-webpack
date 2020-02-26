@@ -110,6 +110,16 @@ And so, if we want to load several scripts, each one using the functions defined
 </html>
 ```
 
+That’s sometimes called *callback hell* or *pyramid of doom.*
+
+<div class="image__ratio" style="padding-top:59.743040685224834%">
+</div>
+<object type="image/svg+xml" data="https://javascript.info//article/callbacks/callback-hell.svg" width="467" height="279" class="image__image">
+
+  <img src="/article/callbacks/callback-hell.svg" alt="" width="467" height="279">
+
+</object>
+
 ## Async-es: The series method
 
 A pure ESM version of Async is available as <a href="https://www.npmjs.com/package/async-es" rel="nofollow"><code>async-es</code></a>.
