@@ -110,7 +110,7 @@ And so, if we want to load several scripts, each one using the functions defined
 </html>
 ```
 
-That’s sometimes called *callback hell* or *pyramid of doom.*
+That’s sometimes called *callback hell* or *pyramid of doom.* (imagen del libro https://javascript.info)
 
 <div class="image__ratio" style="padding-top:59.743040685224834%">
 </div>
