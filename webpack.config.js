@@ -16,7 +16,8 @@ module.exports = {
   plugins: [
     new CopyPlugin([
       { from: 'script-*.js' },
-      { from: "favicon.ico" }
+      { from: "favicon.ico" },
+      { from: "load-script.html"}
     ]),
   ],
 };

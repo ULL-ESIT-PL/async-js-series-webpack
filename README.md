@@ -1,3 +1,9 @@
+## Deployments
+
+* [https://ull-esit-pl.github.io/async-js-series-webpack/](https://ull-esit-pl.github.io/async-js-series-webpack/)
+* [https://ull-esit-pl.github.io/async-js-series-webpack/load-script.html](https://ull-esit-pl.github.io/async-js-series-webpack/load-script.html)
+
+
 ## The loadScript function
 
 Take a look at the function `loadScript(src)`, that loads a script with the given `src`:
