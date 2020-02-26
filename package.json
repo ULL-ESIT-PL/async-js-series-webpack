@@ -10,7 +10,8 @@
     "start": "npm run build; cd dist && http-server",
     "start:dev": "webpack-dev-server",
     "build": "webpack",
-    "clean": "rm dist/main.js dist/script*.js"
+    "clean": "rm dist/main.js dist/script*.js dist/favicon.ico",
+    "gh-pages": "gh-pages -d dist -b gh-pages"
   },
   "keywords": [
     "webpack",
@@ -21,7 +22,8 @@
   "author": "Casiano Rodriguez-Leon <crguezl@ull.edu.es> (https://github.com/crguezl)",
   "license": "ISC",
   "dependencies": {
-    "async-es": "^3.2.0"
+    "async-es": "^3.2.0",
+    "gh-pages": "^2.2.0"
   },
   "devDependencies": {
     "copy-webpack-plugin": "^5.1.1",
