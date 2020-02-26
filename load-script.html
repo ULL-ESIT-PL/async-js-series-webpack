@@ -21,7 +21,7 @@
         document.head.append(script);
       }
            
-      loadScript('/script-1.js', (error, script) => {
+      loadScript('script-1.js', (error, script) => {
         if (error) {
           console.error( error ); 
         } else {
@@ -29,7 +29,7 @@
           out.innerHTML = message;
           console.log(message);
 
-          loadScript('/script-2.js', (error, script) => {
+          loadScript('script-2.js', (error, script) => {
             if (error) {
               console.error( error ); 
             } else {
