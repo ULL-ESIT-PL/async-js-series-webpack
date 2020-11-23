@@ -5,7 +5,8 @@
   "main": "script-1.js",
   "private": true,
   "scripts": {
-    "publish": "git ci -am 2019 && git push origin master",
+    "publish": "git ci -am 2020 && git push origin master",
+    "private": "git ci -am private-2020 && git push private private",
     "test": "http-server -o load-script.html",
     "start": "npm run build; cd dist && http-server",
     "start:dev": "webpack-dev-server",
