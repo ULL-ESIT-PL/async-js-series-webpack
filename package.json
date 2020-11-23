@@ -27,9 +27,9 @@
     "gh-pages": "^2.2.0"
   },
   "devDependencies": {
-    "copy-webpack-plugin": "^5.1.1",
-    "webpack": "^4.41.6",
-    "webpack-cli": "^3.3.11",
-    "webpack-dev-server": "^3.10.3"
+    "copy-webpack-plugin": "^5.1.2",
+    "webpack": "^4.44.2",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0"
   }
 }
