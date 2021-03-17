@@ -14,10 +14,20 @@ module.exports = {
     port: 9000
   },
   plugins: [
-    new CopyPlugin([
+    new CopyPlugin({ patterns: [
       { from: 'script-*.js' },
       { from: "favicon.ico" },
       { from: "load-script.html"}
-    ]),
+    ]}),
   ],
+  devtool: 'eval-cheap-module-source-map',
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        enforce: 'pre',
+        use: ['source-map-loader'],
+      },
+    ],
+  },
 };
