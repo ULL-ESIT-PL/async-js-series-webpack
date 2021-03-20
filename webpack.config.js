@@ -20,7 +20,6 @@ module.exports = {
       { from: "load-script.html"}
     ]}),
   ],
-  debug: true,
   devtool: 'eval-cheap-module-source-map',
   module: {
     rules: [
