@@ -10,7 +10,7 @@
     "test": "http-server -o load-script.html",
     "start": "npm run build; cd dist && http-server",
     "start:dev": "webpack serve",
-    "build": "webpack",
+    "build": "webpack --devtool source-map",
     "clean": "rm -f dist/main.js dist/script*.js dist/favicon.ico",
     "super-clean": "npm run clean; rm -fR node_modules/* package-lock.json",
     "gh-pages": "npm run build && gh-pages -d dist -b gh-pages"
@@ -30,8 +30,8 @@
   "devDependencies": {
     "copy-webpack-plugin": "latest",
     "source-map-loader": "latest",
-    "webpack": "^5.26.3",
-    "webpack-cli": "^4.5.0",
+    "webpack": "latest",
+    "webpack-cli": "lates",
     "webpack-dev-server": "latest"
   }
 }
