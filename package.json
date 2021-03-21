@@ -1,14 +1,14 @@
 {
   "name": "sol",
   "version": "1.0.1",
-  "description": "Take a look at the function `loadScript(src)`, that loads a script with the given `src`:",
+  "description": "Repo for Teaching webpack and asyncJS",
   "main": "script-1.js",
   "private": true,
   "scripts": {
     "publish": "git ci -am 2021 && git push origin master",
     "private": "git ci -am private-2020 && git push private private",
     "test": "http-server -o load-script.html",
-    "start": "npm run build; cd dist && http-server",
+    "start": "npm run start:dev",
     "start:dev": "webpack serve",
     "build": "webpack --devtool source-map",
     "clean": "rm -f dist/main.js dist/script*.js dist/favicon.ico",
